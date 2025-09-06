@@ -77,6 +77,27 @@ body{
     border-radius: 5px;
 
 }
+.adbtn{
+   background-color: rgb(133, 130, 130);
+  color: white;
+  padding-left: 20px;
+  padding-right: 20px;
+  padding-bottom: 10px;
+  box-shadow:0 4px 16px rgba(0,0,0,0.2);
+  border-radius: 5px ;
+  font-weight: 600;
+}
+.adbtn1{
+   background-color: rgb(133, 130, 130);
+  color: white;
+  padding-left: 20px;
+  padding-right: 20px;
+  padding-bottom: 10px;
+  box-shadow:0 4px 16px rgba(0,0,0,0.2);
+  border-radius: 5px ;
+  font-weight: 600;
+  margin: 10px;
+}
 .add{
     width: 100px;
     height: 30px;
@@ -85,9 +106,19 @@ body{
     color: white;
     border-radius: 5px;
 }
-.transparent-image {
-      opacity: 0.5; /* Adjust value between 0 (fully transparent) and 1 (fully opaque) */
-    }
+.billing{
+  margin: 10px;
+  text-align: center;
+}
+.billbtn{
+  background-color: rgb(133, 130, 130);
+  color: white;
+  padding-left: 20px;
+  padding-right: 20px;
+  padding-bottom: 10px;
+  box-shadow:0 4px 16px rgba(0,0,0,0.3);
+  border-radius: 5px ;
+}
 .footer {
   position: fixed;
   bottom: 0;

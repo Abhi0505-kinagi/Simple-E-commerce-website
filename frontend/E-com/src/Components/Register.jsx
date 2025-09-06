@@ -40,6 +40,8 @@ function Register() {
   };
 
   return (
+    <>
+    <h1>Registration</h1>
     <form onSubmit={handleSubmit}>
       <input
         type="text"
@@ -47,23 +49,23 @@ function Register() {
         placeholder="Name"
         value={form.name}
         onChange={handleChange}
-      />
+      /><br></br>
       <input
         type="email"
         name="email"
         placeholder="Email"
         value={form.email}
         onChange={handleChange}
-      />
+      /><br></br>
       <input
         type="password"
         name="password"
         placeholder="Password"
         value={form.password}
         onChange={handleChange}
-      />
-      <button type="submit">Register</button>
-    </form>
+      /><br></br>
+      <button className="adbtn1"type="submit">Register</button>
+    </form></>
   );
 }
 

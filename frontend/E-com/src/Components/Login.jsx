@@ -11,32 +11,39 @@ function Login() {
   };
 
   const handleSubmit = async (e) => {
-    e.preventDefault();
+      e.preventDefault();
 
-    try {
-      const res = await fetch("http://localhost:5000/api/auth/login", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(form),
-      });
+      try {
+        const res = await fetch("http://localhost:5000/api/auth/login", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(form),
+        });
 
-      const data = await res.json();
-	  console.log(data);
-      if (res.ok) {
-        // ✅ Save token + user in localStorage
-        localStorage.setItem("token", data.token);
-        localStorage.setItem("user", JSON.stringify(data.user));
+        const data = await res.json();
+        console.log(data);
 
-        setError("");
-        navigate("/"); // go to home after login
-      } else {
-        setError(data.msg || "Login failed");
+        if (res.ok) {
+          // ✅ Save token + user in localStorage
+          localStorage.setItem("token", data.token);
+          localStorage.setItem("user", JSON.stringify(data.user));
+
+          setError("");
+          navigate("/"); // go to home after login
+        } else {
+          // 👇 Check if backend said "Invalid credentials"
+          if (data.msg === "Invalid credentials") {
+            navigate("/register"); // redirect user to Register page
+          } else {
+            setError(data.msg || "Login failed");
+          }
+        }
+      } catch (err) {
+        console.error("Error:", err);
+        setError("Something went wrong, try again.");
       }
-    } catch (err) {
-      console.error("Error:", err);
-      setError("Something went wrong, try again.");
-    }
-  };
+    };
+
 
   return (
     <div

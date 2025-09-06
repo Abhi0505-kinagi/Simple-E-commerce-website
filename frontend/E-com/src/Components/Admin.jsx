@@ -15,7 +15,7 @@ function Admin() {
 
   const handleSubmit = async () => {
     try {
-      const res = await fetch("http://localhost:5000/api/items/add-item", {
+      const res = await fetch("http://localhost:5000/api/items", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
@@ -28,13 +28,17 @@ function Admin() {
         })
       });
       const data = await res.json();
-      alert(data.msg);
+      alert(`Item added: ${data.title}`); // show title or any field from returned item
+
     } catch (err) {
       console.error(err);
     }
   };
 
   return (
+    <>
+    <h1>Add Product for E-commerce Website</h1>
+    <p>Office purpose use only⚠️</p>
     <div className="admin-container" style={{ display: "flex", alignItems: "flex-start" }}>
       <div className="admnimg" style={{ marginRight: "32px" }}>
         <img src={Pic} alt="Admin" style={{ width: "150px", borderRadius: "12px" }} />
@@ -50,7 +54,7 @@ function Admin() {
         <input name="imageUrl" value={form.imageUrl} onChange={handleChange} /><br />
         <button onClick={handleSubmit} className="admbtn">Submit</button>
       </div>
-    </div>
+    </div></>
   );
 }
 

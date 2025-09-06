@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 
 function Cards() {
   const [items, setItems] = useState([]);
+  const [cart, setCart] = useState({}); // cart as a dictionary
 
   useEffect(() => {
     fetch("http://localhost:5000/api/items")
@@ -10,27 +11,23 @@ function Cards() {
       .catch((err) => console.error("Error fetching items:", err));
   }, []);
 
-    const handleAddToCart = async (itemId) => {
-      try {
-        const res = await fetch("http://localhost:5000/api/add/add-item", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-            "Authorization": "Bearer " + localStorage.getItem("token") // if using auth
-          },
-          body: JSON.stringify({ itemId, quantity: 1 })
-        });
-
-        const data = await res.json();
-        if (res.ok) {
-          alert(data.msg);
-        } else {
-          alert(data.error || data.msg);
-        }
-      } catch (err) {
-        console.error(err);
-      }
-    };
+  const handleAddToCart = (item) => {
+  setCart((prevCart) => {
+    const cartCopy = { ...prevCart };
+    if (cartCopy[item._id]) {
+      cartCopy[item._id].quantity += 1;
+    } else {
+      cartCopy[item._id] = {
+        title: item.title,
+        price: item.price,
+        quantity: 1,
+      };
+    }
+    // Save updated cart to localStorage
+    localStorage.setItem("cart", JSON.stringify(cartCopy));
+    return cartCopy;
+  });
+};
 
 
   return (
@@ -50,9 +47,23 @@ function Cards() {
           <h3>{item.title}</h3>
           <p>Price: ₹{item.price}</p>
           <p>Category: {item.category}</p>
-          <button onClick={() => handleAddToCart(item._id)}>Add to Cart</button>
+          <button className="adbtn"onClick={() => handleAddToCart(item)}>
+            Add to Cart
+          </button>
         </div>
       ))}
+
+      {/* Optional: Display cart */}
+      <div style={{ marginTop: "32px" }}>
+        <h2>Cart</h2>
+        {Object.keys(cart).length === 0 && <p>No items in cart</p>}
+        {Object.entries(cart).map(([id, item]) => (
+          <p key={id}>
+            {item.title} - ₹{item.price} × {item.quantity} = ₹
+            {item.price * item.quantity}
+          </p>
+        ))}
+      </div>
     </div>
   );
 }

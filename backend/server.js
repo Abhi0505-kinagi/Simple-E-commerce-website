@@ -5,18 +5,22 @@ const cors = require("cors");
 dotenv.config();
 const app = express();
 app.use(express.json());
-app.use(cors());
+app.use(cors({
+  origin: "http://localhost:5173", // your React port
+  methods: ["GET", "POST", "PUT", "DELETE"], // allowed methods
+  credentials: true,
+}));
 // Import routes
 const authRoute = require("./routes/auth");
-const itemsRoute = require("./models/Items");
 const addRoute = require("./routes/add"); // <-- your add-item route
 const removeRoute = require('./routes/remove'); 
-
+const itemsRoute = require("./routes/items");
 // Mount routes
 app.use("/api/auth", authRoute);
 app.use("/api/items", itemsRoute);
 app.use("/api/add", addRoute);
-app.use('/api/remove', removeRoute); // <-- this is important
+app.use('/api/remove', removeRoute);
+ // <-- this is important
 
 const PORT = process.env.PORT || 5000;
 mongoose.connect(process.env.MONGO_URI)

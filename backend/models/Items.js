@@ -6,4 +6,4 @@ const itemSchema=new mongoose.Schema({
     category:{type:String},
     imageUrl:{type:String}
 })
-module.exports=mongoose.model('Item',itemSchema);
+module.exports=mongoose.model('Items',itemSchema);

@@ -1,40 +1,33 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 
 function Cart() {
-  const [cart, setCart] = useState([]);
+  const [cartItems, setCartItems] = useState({});
 
-  const fetchCart = async () => {
-    const token = localStorage.getItem("token");
-    if (!token) return;
-
-    try {
-      const res = await fetch("http://localhost:5000/api/cart", {
-        headers: { Authorization: `Bearer ${token}` },
-      });
-      const data = await res.json();
-      if (res.ok) setCart(data.items);
-    } catch (err) {
-      console.error(err);
-    }
+  const handleGenerateBill = () => {
+    const cart = JSON.parse(localStorage.getItem("cart")) || {};
+    setCartItems(cart);
   };
 
-  useEffect(() => {
-    fetchCart();
-  }, []);
+  const total = Object.values(cartItems).reduce(
+    (sum, item) => sum + item.price * item.quantity,
+    0
+  );
 
   return (
-    <div className="cart-page">
-      <h2>Cart Items</h2>
-      {cart.length === 0 ? (
-        <p>No items in cart.</p>
-      ) : (
-        <ul>
-          {cart.map((item) => (
-            <li key={item.itemId}>
-              {item.itemId} - Quantity: {item.quantity}
-            </li>
+    <div className="billing">
+      <h1>Billing Cart</h1>
+      <button  className="billbtn" onClick={handleGenerateBill}>Generate Bill</button>
+
+      {Object.keys(cartItems).length > 0 && (
+        <div style={{ marginTop: "20px" }}>
+          {Object.entries(cartItems).map(([id, item]) => (
+            <p key={id}>
+              {item.title} - ₹{item.price} × {item.quantity} = ₹
+              {item.price * item.quantity}
+            </p>
           ))}
-        </ul>
+          <h2>Total: ₹{total}</h2>
+        </div>
       )}
     </div>
   );
