@@ -1,0 +1,128 @@
+.wname{
+    text-align: center;
+    background-color: rgb(32, 227, 214,0.9);
+    font-weight: 700;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+body{
+    background-color:rgb(115, 113, 109,0.6);
+}
+
+/* Navbar styles */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #222;
+  padding: 0.5rem 2rem;
+}
+
+.navbar-logo {
+  color: #fff;
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+.navbar-links {
+  list-style: none;
+  display: flex;
+  gap: 2rem;
+  margin: 0;
+  padding: 0;
+}
+
+.navbar-links li a {
+  color: #fff;
+  text-decoration: none;
+  font-size: 1rem;
+  transition: color 0.2s;
+}
+
+.navbar-links li a:hover {
+  color: #ffd700;
+}
+
+
+.card{
+    display: inline-block;
+     box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+    width: 300px;
+    height: 350px;
+    background-color:rgb(211, 208, 208,0.6);
+    box-shadow: 5px,5px,5px,5px;
+    border: 2px solid black;
+    border-radius: 5px;
+    margin: 10px;
+    text-align: center;
+    padding: 15px;
+}
+.tit{
+    background-color: #dcd9ca;
+    padding: 5px;
+    border: 2px solid #222;
+    border-radius: 5px;
+}
+.price{
+    background-color: #dcd9ca;
+    font-weight: 900;
+    font-size: larger;
+    padding: 5px;
+    border: 2px solid #222;
+    border-radius: 5px;
+}
+.cat{
+    background-color: #dcd9ca;
+    padding-bottom: 10px;
+    border: 2px solid #222;
+    border-radius: 5px;
+
+}
+.add{
+    width: 100px;
+    height: 30px;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.3);
+    background-color: rgba(9, 118, 126, 0.9);
+    color: white;
+    border-radius: 5px;
+}
+.transparent-image {
+      opacity: 0.5; /* Adjust value between 0 (fully transparent) and 1 (fully opaque) */
+    }
+.footer {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  background: #222;
+  color: #fff;
+  text-align: center;
+  padding: 1rem 0;
+}
+.adminmenu{
+  width: 500px;
+  height: 600px;
+  margin: 20px;
+  padding: 10px;
+  color: #0f0404;
+  font-weight: 400;
+  font-size: larger;
+  text-align: left
+
+}
+.admbtn{
+  margin-top: 10px;
+  width: 100px;
+  height: 30px;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.3);
+  background-color: rgba(9, 118, 126, 0.9);
+  color: white;
+  border-radius: 5px;
+}
+input{
+  padding-left: 20px;
+  border: 2px solid black;
+  padding-bottom: 10px;
+  border-radius: 5px;
+  margin-top: 5px;
+  width: 400px;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.3);;
+}
